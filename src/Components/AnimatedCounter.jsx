@@ -11,15 +11,18 @@ const AnimatedCounter = () => {
             className="bg-zinc-900 rounded-lg p-10 flex flex-col justify-center"
           >
             <div className="counter-number text-white text-5xl font-bold mb-2">
-              <CountUp
-                end={item.value}
-                suffix={item.suffix}
-                duration={3}
-                start={0}
-                enableScrollSpy={true}
-                scrollSpyDelay={100}
-                scrollSpyOnce={true}
-              />
+              {/* Wrap CountUp to ensure ScrollSpy target exists */}
+              <span>
+                <CountUp
+                  end={item.value}
+                  start={0}
+                  duration={3}
+                  suffix={item.suffix || ""}
+                  enableScrollSpy={true}
+                  scrollSpyDelay={100}
+                  scrollSpyOnce={true}
+                />
+              </span>
             </div>
             <div className="text-white-50 text-lg">{item.label}</div>
           </div>
