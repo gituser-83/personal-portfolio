@@ -1,28 +1,26 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Showcase = () => {
   const sectionRef = useRef(null);
+  const rydeRef = useRef(null);
   const libraryRef = useRef(null);
   const ycDirectoryRef = useRef(null);
 
-  useGSAP(() => {
-    // Fade in the section
+  useEffect(() => {
     gsap.fromTo(
       sectionRef.current,
       { opacity: 0 },
       { opacity: 1, duration: 1.5 }
     );
 
-    // Animate project cards
-    const cards = [libraryRef.current, ycDirectoryRef.current];
+    const cards = [rydeRef.current, libraryRef.current, ycDirectoryRef.current];
 
     cards.forEach((card, index) => {
-      if (!card) return; // safety check
+      if (!card) return;
       gsap.fromTo(
         card,
         { y: 50, opacity: 0 },
@@ -44,6 +42,19 @@ const Showcase = () => {
     <div id="work" ref={sectionRef} className="app-showcase">
       <div className="w-full">
         <div className="showcaselayout">
+          <div ref={rydeRef} className="first-project-wrapper">
+            <div className="image-wrapper">
+              <img src="/images/project-timer-1.png" alt="Pomodoro Timer" />
+            </div>
+            <div className="text-content">
+              <h2>POMODORO</h2>
+              <p className="text-white-50 md:text-xl">
+                This is a distraction-free timer using the Pomodoro technique to
+                boost focus and productivity.
+              </p>
+            </div>
+          </div>
+
           <div className="project-list-wrapper overflow-hidden">
             <div className="project" ref={libraryRef}>
               <div className="image-wrapper bg-[#FFEFDB]">
